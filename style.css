@@ -1,0 +1,44 @@
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#b30000;
+  color:white;
+  text-align:center;
+}
+
+.screen{
+  display:none;
+  min-height:100vh;
+  padding:40px 20px;
+}
+
+.active{
+  display:block;
+}
+
+button{
+  padding:15px 25px;
+  font-size:20px;
+  background:white;
+  color:#b30000;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  margin-top:20px;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+.photo-box{
+  width:200px;
+  height:200px;
+  background:#fff;
+  color:black;
+  margin:20px auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:15px;
+}
