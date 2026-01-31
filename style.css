@@ -206,3 +206,49 @@ button:hover{
     height:220px;
   }
   }
+/* ================================
+   HERO SCREEN FIX
+================================ */
+
+.screen.center{
+  justify-content:center;
+  padding-top:0;
+}
+
+/* Big romantic title */
+.screen.center h1{
+  font-size:3.2rem;
+  font-weight:700;
+  margin-bottom:20px;
+  text-shadow:0 0 12px rgba(255,200,200,0.8);
+}
+
+/* Subtitle */
+.screen.center p{
+  font-size:1.3rem;
+  opacity:0.9;
+}
+
+/* Heart Button Upgrade */
+.screen.center button{
+  width:110px;
+  height:110px;
+  font-size:42px;
+  margin-top:35px;
+  background:white;
+  animation:pulse 1.6s infinite;
+}
+
+/* Pulse Effect */
+@keyframes pulse{
+  0%{ transform:scale(1); box-shadow:0 0 20px white;}
+  50%{ transform:scale(1.12); box-shadow:0 0 40px white;}
+  100%{ transform:scale(1); box-shadow:0 0 20px white;}
+}
+
+/* Mobile tweak */
+@media(max-width:500px){
+  .screen.center h1{
+    font-size:2.4rem;
+  }
+}
