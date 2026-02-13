@@ -1,21 +1,24 @@
-/* RESET */
+/* =========================
+   RESET & BASE STYLING
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BODY (Mobile Optimized Vintage Theme) */
 body {
-  font-family: 'Georgia', serif;
+  font-family: 'Playfair Display', serif;
   background: #f5e6d3;
   color: #4b2e2e;
   text-align: center;
-  overflow-x: hidden;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* ENVELOPE SCREEN */
+/* =========================
+   ENVELOPE SCREEN (INTRO)
+========================= */
 #envelopeScreen {
   height: 100vh;
   width: 100%;
@@ -24,22 +27,23 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.8s ease;
+  transition: opacity 1s ease;
 }
 
-/* ENVELOPE CONTAINER */
+/* Envelope Body */
 .envelope {
   position: relative;
   width: 220px;
   height: 150px;
   background: #d9a066;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  animation: gentleFloat 3s ease-in-out infinite;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  animation: floatEnvelope 3s ease-in-out infinite;
+  perspective: 1000px;
 }
 
-/* ENVELOPE FLAP */
+/* Envelope Flap */
 .flap {
   position: absolute;
   top: -75px;
@@ -50,11 +54,16 @@ body {
   border-right: 110px solid transparent;
   border-bottom: 75px solid #c4874f;
   transform-origin: bottom;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s ease;
 }
 
-/* LETTER ICON */
-.letter {
+/* Flap Open Animation */
+.envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+/* Letter Icon */
+.letterIcon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -62,26 +71,47 @@ body {
   font-size: 42px;
 }
 
-/* TAP TEXT */
+/* Tap Text */
 .tapText {
-  margin-top: 20px;
+  margin-top: 18px;
   font-size: 18px;
   color: #8b5e3c;
   opacity: 0.9;
 }
 
-/* MAIN CONTENT */
+/* Fade Out Animation */
+.fadeOut {
+  animation: fadeOut 1s ease forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes floatEnvelope {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
 #mainContent {
   display: none;
-  padding: 20px 15px 40px;
+  padding: 25px 15px 40px;
   position: relative;
   z-index: 2;
 }
 
-/* HERO SECTION */
+/* =========================
+   HERO SECTION
+========================= */
 .hero {
-  padding-top: 40px;
-  padding-bottom: 20px;
+  padding-top: 30px;
+  margin-bottom: 25px;
 }
 
 .hero h1 {
@@ -90,74 +120,110 @@ body {
   margin-bottom: 10px;
 }
 
-.hero p {
-  font-size: 16px;
+.subtitle {
+  font-size: 17px;
   opacity: 0.85;
   padding: 0 10px;
 }
 
-/* TIMER SECTION */
-.timer {
+/* =========================
+   LOVE TIMER SECTION
+========================= */
+.timerSection {
   margin: 30px 0;
 }
 
-.timer h2 {
+.timerSection h2 {
   font-size: 26px;
-  margin-bottom: 10px;
   color: #6d4c41;
+  margin-bottom: 12px;
 }
 
 #loveTime {
   font-size: 18px;
+  line-height: 1.7;
   font-weight: 500;
-  line-height: 1.6;
 }
 
-/* VINTAGE LETTER PAPER */
+/* =========================
+   LETTER SECTION (PAPER THEME)
+========================= */
 .letterSection {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
   padding: 10px;
 }
 
+/* PAPER WITH YOUR HEART BACKGROUND */
 .paper {
-  background: #fff8e7;
+  background: url("paper-bg.jpg") center/cover no-repeat;
   border: 2px solid #8b5e3c;
-  border-radius: 14px;
-  padding: 25px 20px;
+  border-radius: 16px;
+  padding: 28px 22px;
   max-width: 95%;
-  line-height: 1.8;
+  line-height: 1.9;
   font-size: 17px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+  position: relative;
+  overflow: hidden;
   animation: paperFloat 4s ease-in-out infinite;
 }
 
-.paper h2 {
-  margin-bottom: 15px;
-  color: #6d4c41;
+/* Soft overlay for readability */
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 248, 231, 0.78);
+  border-radius: 16px;
+  z-index: 0;
 }
 
-/* GAME SECTION */
-.game {
+.paper h2 {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 15px;
+  color: #5a3e36;
+}
+
+#typedLetter {
+  position: relative;
+  z-index: 1;
+  text-align: left;
+  white-space: pre-line;
+  font-size: 17px;
+  line-height: 1.9;
+  color: #4b2e2e;
+  min-height: 180px;
+}
+
+@keyframes paperFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+/* =========================
+   LOVE GAME SECTION
+========================= */
+.gameSection {
   margin-top: 40px;
 }
 
-.game h2 {
+.gameSection h2 {
   font-size: 24px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   padding: 0 10px;
 }
 
-/* BUTTON CONTAINER */
+/* Buttons */
 .buttons {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
-  margin-top: 15px;
 }
 
-/* BUTTON STYLE (Mobile Friendly) */
 button {
   padding: 14px 26px;
   font-size: 18px;
@@ -167,7 +233,7 @@ button {
   color: white;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
 button:active {
@@ -178,7 +244,6 @@ button:hover {
   background: #c25555;
 }
 
-/* RESPONSE TEXT */
 #response {
   margin-top: 15px;
   font-size: 18px;
@@ -186,7 +251,9 @@ button:hover {
   color: #8b3a3a;
 }
 
-/* FLOATING HEARTS CONTAINER (FULL SCREEN) */
+/* =========================
+   FLOATING HEARTS (FULL SCREEN)
+========================= */
 .hearts {
   position: fixed;
   top: 0;
@@ -198,57 +265,42 @@ button:hover {
   z-index: 1;
 }
 
-/* INDIVIDUAL HEART */
 .heart {
   position: absolute;
   bottom: -20px;
   animation: floatHeart linear forwards;
-  opacity: 0.6;
+  opacity: 0.5;
+  filter: blur(0.2px);
 }
 
-/* HEART FLOAT ANIMATION (ALL OVER SCREEN) */
 @keyframes floatHeart {
   0% {
     transform: translateY(0) translateX(0) scale(1);
     opacity: 0.7;
   }
   50% {
-    transform: translateY(-50vh) translateX(20px) scale(1.2);
+    transform: translateY(-50vh) translateX(25px) scale(1.2);
     opacity: 0.9;
   }
   100% {
-    transform: translateY(-110vh) translateX(-20px) scale(1.4);
+    transform: translateY(-110vh) translateX(-25px) scale(1.4);
     opacity: 0;
   }
 }
 
-/* ENVELOPE FLOAT ANIMATION */
-@keyframes gentleFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* PAPER FLOAT (SUBTLE ROMANTIC EFFECT) */
-@keyframes paperFloat {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-/* MOBILE RESPONSIVENESS */
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
 @media (max-width: 480px) {
   .hero h1 {
     font-size: 26px;
   }
 
-  .timer h2 {
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .timerSection h2 {
     font-size: 22px;
   }
 
@@ -258,7 +310,7 @@ button:hover {
 
   .paper {
     font-size: 16px;
-    padding: 20px 15px;
+    padding: 22px 16px;
   }
 
   button {
