@@ -3,30 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>For My Babeyy ❤️</title>
+  <title>For My Babeyy 💌</title>
 
-  <!-- Vintage Font Style -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Vintage Romantic Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Background Music -->
+  <!-- Background Music (Plays After Tap) -->
   <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mp3">
   </audio>
 
-  <!-- ENVELOPE OPENING SCREEN -->
+  <!-- =========================
+       ENVELOPE INTRO SCREEN
+  ========================== -->
   <div id="envelopeScreen">
-    <div class="envelope" onclick="openEnvelope()">
-      <div class="flap"></div>
-      <div class="letterIcon">💌</div>
-    </div>
-    <p class="tapText">Tap the letter, Babeyy</p>
+    
+    <!-- Vintage Envelope Image (Tap to Open) -->
+    <img 
+      src="envelope.png" 
+      alt="Valentine Envelope"
+      class="envelopeImage"
+      onclick="openEnvelope()"
+    />
+
+    <p class="tapText">Tap the letter, Babeyy 💌</p>
   </div>
 
-  <!-- MAIN WEBSITE CONTENT (Hidden First) -->
+  <!-- =========================
+       MAIN CONTENT (HIDDEN FIRST)
+  ========================== -->
   <div id="mainContent">
 
     <!-- Floating Hearts Background -->
@@ -46,10 +55,10 @@
       <p id="loveTime"></p>
     </section>
 
-    <!-- LETTER SECTION (WITH PAPER THEME) -->
+    <!-- LETTER SECTION (Paper Theme + Typing Effect) -->
     <section class="letterSection">
       <div class="paper">
-        <h2>My Letter to You</h2>
+        <h2>My Letter to You 💌</h2>
         <p id="typedLetter"></p>
       </div>
     </section>
@@ -66,8 +75,20 @@
       <p id="response"></p>
     </section>
 
+    <!-- SECRET ENDING MESSAGE (Scroll Reveal) -->
+    <section id="secretSection">
+      <div class="secretCard">
+        <p class="secretText">
+          I love you 💝  
+          thank you for existing in my life.  
+          You are really sweet and amazing 💌🫶🏻
+        </p>
+      </div>
+    </section>
+
   </div>
 
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
