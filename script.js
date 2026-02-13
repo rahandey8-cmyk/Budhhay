@@ -1,25 +1,43 @@
+// ===============================
 // LOVE START DATE (08 March 2025)
+// ===============================
 const startDate = new Date("2025-03-08T00:00:00");
 
-// ENVELOPE OPEN (Mobile Friendly + Music Play)
+// ===============================
+// ENVELOPE OPEN FUNCTION (CINEMATIC + MOBILE SAFE)
+// ===============================
 function openEnvelope() {
+  const envelope = document.querySelector(".envelope");
   const envelopeScreen = document.getElementById("envelopeScreen");
   const mainContent = document.getElementById("mainContent");
   const music = document.getElementById("bgMusic");
 
-  // Hide envelope and show main content smoothly
-  envelopeScreen.style.display = "none";
-  mainContent.style.display = "block";
+  // Open flap animation
+  envelope.classList.add("open");
 
-  // Play music after user interaction (required for mobile browsers)
+  // Play music after user tap (required for mobile)
   if (music) {
-    music.play().catch(() => {
-      console.log("Music autoplay blocked until interaction.");
-    });
+    music.play().catch(() => {});
   }
+
+  // Fade out envelope and reveal main site
+  setTimeout(() => {
+    envelopeScreen.classList.add("fadeOut");
+
+    setTimeout(() => {
+      envelopeScreen.style.display = "none";
+      mainContent.style.display = "block";
+
+      // Start typing letter AFTER content appears
+      startTypingLetter();
+
+    }, 1000);
+  }, 800);
 }
 
-// IMPROVED LOVE TIMER (Clean Format)
+// ===============================
+// LOVE TIMER (CLEAN + ELEGANT)
+// ===============================
 function updateLoveTime() {
   const now = new Date();
   const diff = now - startDate;
@@ -42,12 +60,51 @@ function updateLoveTime() {
   }
 }
 
-// Update timer every second
+// Start timer immediately and update every second
+updateLoveTime();
 setInterval(updateLoveTime, 1000);
-updateLoveTime(); // run immediately on load
 
+// ===============================
+// TYPING LETTER EFFECT (CINEMATIC)
+// ===============================
+const letterText = `My Babeyy,
 
-// YES / NO GAME (Mobile + Desktop)
+From the moment you came into my life on 08.03.2025,
+every day started feeling softer, warmer, and more meaningful.
+
+Even though we are far away,
+my heart stays with you in every second, every minute, every breath.
+
+This little website is not just code,
+it is a piece of my love, built only for you.
+
+You are my peace, my comfort, and my forever person.
+
+— Yours, always. ❤️`;
+
+let letterIndex = 0;
+let typingStarted = false;
+
+function startTypingLetter() {
+  if (typingStarted) return;
+  typingStarted = true;
+  typeLetter();
+}
+
+function typeLetter() {
+  const typedElement = document.getElementById("typedLetter");
+  if (!typedElement) return;
+
+  if (letterIndex < letterText.length) {
+    typedElement.innerHTML += letterText.charAt(letterIndex);
+    letterIndex++;
+    setTimeout(typeLetter, 35); // typing speed (lower = faster)
+  }
+}
+
+// ===============================
+// YES / NO LOVE GAME (MOBILE + DESKTOP)
+// ===============================
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const response = document.getElementById("response");
@@ -61,8 +118,8 @@ if (yesBtn && response) {
 function moveNoButton() {
   if (!noBtn) return;
 
-  const maxX = window.innerWidth - 100;
-  const maxY = window.innerHeight - 50;
+  const maxX = window.innerWidth - 120;
+  const maxY = window.innerHeight - 80;
 
   const randomX = Math.random() * maxX;
   const randomY = Math.random() * maxY;
@@ -72,14 +129,15 @@ function moveNoButton() {
   noBtn.style.top = randomY + "px";
 }
 
-// Works for both mobile touch and mouse
+// Works on both phone and laptop
 if (noBtn) {
   noBtn.addEventListener("touchstart", moveNoButton);
   noBtn.addEventListener("mouseover", moveNoButton);
 }
 
-
-// FLOATING HEARTS ACROSS FULL SCREEN (Smooth & Random)
+// ===============================
+// FLOATING HEARTS (FULL SCREEN + SOFT)
+// ===============================
 function createHeart() {
   const heartsContainer = document.querySelector(".hearts");
   if (!heartsContainer) return;
@@ -91,19 +149,19 @@ function createHeart() {
   // Random horizontal position
   heart.style.left = Math.random() * 100 + "vw";
 
-  // Random animation duration (for natural movement)
+  // Random animation duration (natural floating)
   heart.style.animationDuration = (6 + Math.random() * 6) + "s";
 
   // Random size for depth effect
-  heart.style.fontSize = (14 + Math.random() * 22) + "px";
+  heart.style.fontSize = (14 + Math.random() * 20) + "px";
 
   heartsContainer.appendChild(heart);
 
-  // Remove heart after animation to prevent lag
+  // Remove after animation to prevent lag
   setTimeout(() => {
     heart.remove();
   }, 12000);
 }
 
-// Generate hearts continuously
-setInterval(createHeart, 400);
+// Generate hearts continuously (smooth, not spammy)
+setInterval(createHeart, 500);
