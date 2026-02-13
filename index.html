@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Babeyyyy 💌</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: #f3e7d3;
+  font-family: 'Libre Baskerville', serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Vintage paper card */
+.paper {
+  background: #fff8ea;
+  background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 650px;
+  margin: 20px auto;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  animation: fadeIn 2s ease;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 44px;
+  color: #5a3a2e;
+}
+
+h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  color: #6b4c3b;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #4a3b2c;
+}
+
+/* Envelope */
+.envelope {
+  width: 200px;
+  margin-top: 70px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+.envelope:hover {
+  transform: scale(1.08);
+}
+
+/* Hidden sections */
+.hidden {
+  display: none;
+}
+
+/* Counter */
+.counter {
+  font-size: 20px;
+  margin-top: 15px;
+  color: #7b4b3a;
+  font-weight: bold;
+}
+
+/* Gallery */
+.gallery img {
+  width: 90%;
+  max-width: 300px;
+  border-radius: 14px;
+  margin: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* Floating hearts (subtle aesthetic) */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  color: #c97b7b;
+  animation: float 7s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.9; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(25px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+button {
+  padding: 12px 26px;
+  font-size: 16px;
+  background: #7b4b3a;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<!-- Soft Lana-style background music -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/02/28/audio_7f9b0b6e7e.mp3" type="audio/mp3">
+</audio>
+
+<!-- Opening Screen -->
+<div id="start">
+  <h1>For My Babeyyyy 💌</h1>
+  <p>From your Bong</p>
+  <img class="envelope" 
+       src="https://cdn-icons-png.flaticon.com/512/561/561127.png" 
+       onclick="openLetter()" 
+       alt="Envelope">
+  <p>(tap the envelope)</p>
+</div>
+
+<!-- Letter -->
+<div id="letter" class="hidden">
+  <div class="paper">
+    <h2>My Babygirl,</h2>
+
+    <div class="counter" id="daysCounter"></div>
+
+    <p>
+      Since 08.03.2025, my life quietly changed in the softest way possible.
+      You didn’t just become someone I love…
+      you became my comfort, my peace, and my home — even from miles away.
+    </p>
+
+    <p>
+      We are far apart in distance,  
+      but somehow, you exist in every little part of my day.
+      In my thoughts, in my silence, in the moments I wish I could hold your hand.
+    </p>
+
+    <p>
+      You call me Bong,  
+      and I call you my Babeyyyy…  
+      and that alone feels more real than any distance in this world.
+    </p>
+
+    <p>
+      If I could, I would turn every kilometer between us into a letter,
+      just so you could feel how much you mean to me.
+    </p>
+
+    <p>
+      This little website is not just code.
+      It’s my way of being close to you when I physically cannot.
+    </p>
+
+    <p>
+      Happy Valentine’s Day, my Babygirl.  
+      Forever yours,  
+      — Bong ❤️
+    </p>
+
+    <button onclick="showGallery()">Open Our Memories</button>
+  </div>
+</div>
+
+<!-- Memories Section -->
+<div id="gallery" class="hidden">
+  <div class="paper">
+    <h2>Our Memories 📸</h2>
+    <p>Every memory with you is my favorite.</p>
+
+    <div class="gallery">
+      <img src="photo1.jpg" alt="Memory 1">
+      <img src="photo2.jpg" alt="Memory 2">
+      <img src="photo3.jpg" alt="Memory 3">
+    </div>
+  </div>
+</div>
+
+<script>
+// Open letter + play music
+function openLetter() {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("letter").classList.remove("hidden");
+  document.getElementById("music").play();
+  calculateDays();
+}
+
+// Days counter (since 08.03.2025)
+function calculateDays() {
+  const startDate = new Date("2025-03-08");
+  const today = new Date();
+  const diffTime = today - startDate;
+  const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  document.getElementById("daysCounter").innerText =
+    days + " days with you, Babeyyyy.";
+}
+
+function showGallery() {
+  document.getElementById("gallery").classList.remove("hidden");
+}
+
+// Floating hearts (aesthetic, not too flashy)
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 16 + 12) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}
+setInterval(createHeart, 900);
+</script>
+
+</body>
+</html>
