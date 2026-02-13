@@ -35,13 +35,12 @@ body {
   width: 260px;
   max-width: 80vw;
   cursor: pointer;
-  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
   animation: floatEnvelope 3.2s ease-in-out infinite,
              gentleShake 4s ease-in-out infinite;
-  filter: drop-shadow(0 18px 30px rgba(0,0,0,0.25));
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.25));
 }
 
-/* Tap feedback */
 .envelopeImage:active {
   transform: scale(0.95);
 }
@@ -53,22 +52,22 @@ body {
   opacity: 0.9;
 }
 
-/* FLOAT ANIMATION */
+/* Float animation */
 @keyframes floatEnvelope {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-14px); }
 }
 
-/* GENTLE SHAKE (VERY SOFT) */
+/* Gentle shake (very subtle, romantic) */
 @keyframes gentleShake {
-  0%   { rotate: 0deg; }
-  25%  { rotate: 0.6deg; }
-  50%  { rotate: 0deg; }
-  75%  { rotate: -0.6deg; }
-  100% { rotate: 0deg; }
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(0.6deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-0.6deg); }
+  100% { transform: rotate(0deg); }
 }
 
-/* FADE OUT INTRO */
+/* Fade out intro */
 .fadeOut {
   animation: fadeOut 1s ease forwards;
 }
@@ -85,9 +84,44 @@ body {
 ========================= */
 #mainContent {
   display: none;
-  padding: 25px 16px 50px;
+  padding: 28px 16px 60px;
   position: relative;
   z-index: 2;
+}
+
+/* Floating hearts layer */
+.hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  animation: floatHeart linear forwards;
+  opacity: 0.55;
+  filter: blur(0.2px);
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(25px) scale(1.25);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-115vh) translateX(-25px) scale(1.45);
+    opacity: 0;
+  }
 }
 
 /* =========================
@@ -141,22 +175,22 @@ body {
   padding: 10px;
 }
 
-/* VINTAGE PAPER WITH YOUR HEART IMAGE */
+/* Paper background (your uploaded paper-bg.jpg) */
 .paper {
   background: url("paper-bg.jpg") center/cover no-repeat;
   border: 2px solid #8b5e3c;
   border-radius: 18px;
-  padding: 30px 24px;
+  padding: 32px 24px;
   max-width: 95%;
   line-height: 1.9;
   font-size: 17px;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
   position: relative;
   overflow: hidden;
   animation: paperFloat 4s ease-in-out infinite;
 }
 
-/* Soft overlay for readability */
+/* Soft overlay for readability on patterned paper */
 .paper::before {
   content: "";
   position: absolute;
@@ -174,11 +208,24 @@ body {
   font-size: 24px;
 }
 
-#typedLetter {
+/* Cinematic title (Valentine line) */
+.letterTitle {
   position: relative;
   z-index: 1;
-  text-align: left;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #8b3a3a;
+  text-align: center;
+  letter-spacing: 0.3px;
+}
+
+/* Typed letter body */
+.letterBody {
+  position: relative;
+  z-index: 1;
   white-space: pre-line;
+  text-align: left;
   font-size: 17px;
   line-height: 1.95;
   color: #4b2e2e;
@@ -204,7 +251,6 @@ body {
   padding: 0 10px;
 }
 
-/* Buttons Layout */
 .buttons {
   display: flex;
   justify-content: center;
@@ -221,7 +267,7 @@ button {
   color: white;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 button:hover {
@@ -262,7 +308,7 @@ button:active {
   padding: 32px 24px;
   max-width: 92%;
   margin: 0 auto;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(6px);
 }
 
@@ -274,47 +320,9 @@ button:active {
   animation: gentleGlow 2.5s ease-in-out infinite alternate;
 }
 
-/* Soft glow animation */
 @keyframes gentleGlow {
   from { opacity: 0.85; }
   to { opacity: 1; }
-}
-
-/* =========================
-   FLOATING HEARTS (FULL SCREEN)
-========================= */
-.hearts {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.heart {
-  position: absolute;
-  bottom: -20px;
-  animation: floatHeart linear forwards;
-  opacity: 0.55;
-  filter: blur(0.2px);
-}
-
-@keyframes floatHeart {
-  0% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0.7;
-  }
-  50% {
-    transform: translateY(-50vh) translateX(25px) scale(1.25);
-    opacity: 0.9;
-  }
-  100% {
-    transform: translateY(-115vh) translateX(-25px) scale(1.45);
-    opacity: 0;
-  }
 }
 
 /* =========================
@@ -340,6 +348,10 @@ button:active {
   .paper {
     font-size: 16px;
     padding: 24px 18px;
+  }
+
+  .letterTitle {
+    font-size: 22px;
   }
 
   .secretText {
