@@ -1,79 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Babeyy ❤️</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Babeyy ❤️</title>
+
+  <!-- Vintage Font Style -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- Background Music -->
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mp3">
-</audio>
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+  </audio>
 
-<!-- Envelope Screen -->
-<div id="envelopeScreen">
-  <div class="envelope" onclick="openEnvelope()">
-    <div class="flap"></div>
-    <div class="letter">💌</div>
+  <!-- ENVELOPE OPENING SCREEN -->
+  <div id="envelopeScreen">
+    <div class="envelope" onclick="openEnvelope()">
+      <div class="flap"></div>
+      <div class="letterIcon">💌</div>
+    </div>
+    <p class="tapText">Tap the letter, Babeyy</p>
   </div>
-  <p class="tapText">Tap the envelope, Babeyy</p>
-</div>
 
-<!-- Main Website (Hidden Initially) -->
-<div id="mainContent">
+  <!-- MAIN WEBSITE CONTENT (Hidden First) -->
+  <div id="mainContent">
 
-  <!-- Hearts Background -->
-  <div class="hearts"></div>
+    <!-- Floating Hearts Background -->
+    <div class="hearts"></div>
 
-  <!-- Title -->
-  <section class="hero">
-    <h1>For My Babeyy ❤️</h1>
-    <p>Distance means nothing when you mean everything.</p>
-  </section>
-
-  <!-- Love Timer -->
-  <section class="timer">
-    <h2>Our Love Timer ⏳</h2>
-    <p id="loveTime"></p>
-  </section>
-
-  <!-- Vintage Letter -->
-  <section class="letterSection">
-    <div class="paper">
-      <h2>My Letter to You</h2>
-      <p>
-        My Babeyy,  
-        From the moment you came into my life on 08.03.2025,  
-        every day started feeling softer, warmer, and more meaningful.  
-
-        Even though we are far away,  
-        my heart stays with you in every second, every minute, every breath.  
-
-        This little website is not just code,  
-        it is a piece of my love, built only for you.  
-
-        You are my peace, my comfort, and my forever person.  
-
-        — Yours, always.
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <h1>For My Babeyy ❤️</h1>
+      <p class="subtitle">
+        Distance means nothing when you mean everything.
       </p>
-    </div>
-  </section>
+    </section>
 
-  <!-- Yes No Game -->
-  <section class="game">
-    <h2>Do you love me, Babeyy? 😌</h2>
-    <div class="buttons">
-      <button id="yesBtn">Yes 💖</button>
-      <button id="noBtn">No 😭</button>
-    </div>
-    <p id="response"></p>
-  </section>
+    <!-- LOVE TIMER -->
+    <section class="timerSection">
+      <h2>Our Love Timer ⏳</h2>
+      <p id="loveTime"></p>
+    </section>
 
-</div>
+    <!-- LETTER SECTION (WITH PAPER THEME) -->
+    <section class="letterSection">
+      <div class="paper">
+        <h2>My Letter to You</h2>
+        <p id="typedLetter"></p>
+      </div>
+    </section>
 
-<script src="script.js"></script>
+    <!-- LOVE GAME -->
+    <section class="gameSection">
+      <h2>Do you love me, Babeyy? 😊</h2>
+
+      <div class="buttons">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😭</button>
+      </div>
+
+      <p id="response"></p>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
