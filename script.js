@@ -12,18 +12,18 @@ function openEnvelope() {
   const mainContent = document.getElementById("mainContent");
   const music = document.getElementById("bgMusic");
 
-  // Small visual tap feedback
+  // Tap feedback animation
   if (envelope) {
     envelope.style.transform = "scale(1.08)";
     envelope.style.opacity = "0.9";
   }
 
-  // Play music (mobile safe after tap)
+  // Play music (mobile safe after user interaction)
   if (music) {
     music.play().catch(() => {});
   }
 
-  // Smooth fade transition
+  // Smooth transition
   setTimeout(() => {
     envelopeScreen.classList.add("fadeOut");
 
@@ -31,10 +31,8 @@ function openEnvelope() {
       envelopeScreen.style.display = "none";
       mainContent.style.display = "block";
 
-      // Start typing letter after reveal
+      // Start features after reveal
       startTypingLetter();
-
-      // Start floating hearts after reveal (better performance)
       startHearts();
 
     }, 900);
@@ -42,7 +40,7 @@ function openEnvelope() {
 }
 
 // ======================================
-// ELEGANT LOVE TIMER (CLEAN FORMAT)
+// ELEGANT LOVE TIMER
 // ======================================
 function updateLoveTime() {
   const now = new Date();
@@ -63,50 +61,91 @@ function updateLoveTime() {
   }
 }
 
-// Start timer immediately + every second
+// Start timer
 updateLoveTime();
 setInterval(updateLoveTime, 1000);
 
 // ======================================
-// CINEMATIC TYPING LETTER
+// CINEMATIC LETTER (TITLE + TYPING)
 // ======================================
-const letterText = `My Babeyy,
+const letterTitle = "Happy Valentine’s Day my love ❤️";
 
-From the moment you came into my life on 08.03.2025,
-every day started feeling softer, warmer, and more meaningful.
+const letterBody = `
 
-Even though we are far away,
-my heart stays with you in every second, every minute, every breath.
+On this special day, I just want you to know how much you truly mean to me 🥹💕
+Every day with you feels like a beautiful dream, and I genuinely cherish every moment we share 💗
 
-This little website is not just code,
-it is a piece of my love, built only for you.
+You are honestly one of the most precious things that ever happened to me 😁
+No matter what the future brings, I feel calmer knowing that you are beside me, even from far away 🫂💝
 
-You are my peace, my comfort, and my forever person.
+Sometimes I really wonder how I got lucky enough to be with someone as kind, caring, and wonderful as you 😆
+I love you so much, more than my words can properly explain ❤️
 
-— Yours, always. ❤️`;
+I adore everything about you…
+your smile, your softness, the way you care about me,
+and even the little things you do without realizing.
 
-let letterIndex = 0;
+You mean the world to me 💗 and I truly cannot imagine my life without you 🥹
+
+I want to spend my life cherishing you, supporting you,
+and being there for you in every situation.
+
+When you are sad, I want to be the one who comforts you.
+When you are happy, I want to be the one who shares that happiness with you.
+
+I promise to always be honest with you,
+to be your safe place, your peace,
+and your shoulder whenever you feel tired or overwhelmed.
+
+I will always choose you, love you, and care for you sincerely 💝
+
+With endless love,
+Your bong 💌`;
+
+let titleIndex = 0;
+let bodyIndex = 0;
 let typingStarted = false;
 
 function startTypingLetter() {
   if (typingStarted) return;
   typingStarted = true;
-  typeLetter();
-}
 
-function typeLetter() {
   const typedElement = document.getElementById("typedLetter");
   if (!typedElement) return;
 
-  if (letterIndex < letterText.length) {
-    typedElement.innerHTML += letterText.charAt(letterIndex);
-    letterIndex++;
-    setTimeout(typeLetter, 32); // smooth cinematic speed
+  // Create title element
+  const titleElement = document.createElement("div");
+  titleElement.className = "letterTitle";
+  typedElement.appendChild(titleElement);
+
+  typeTitle(titleElement);
+}
+
+function typeTitle(titleElement) {
+  if (titleIndex < letterTitle.length) {
+    titleElement.innerHTML += letterTitle.charAt(titleIndex);
+    titleIndex++;
+    setTimeout(() => typeTitle(titleElement), 50);
+  } else {
+    // After title finishes, start body typing
+    const bodyElement = document.createElement("div");
+    bodyElement.className = "letterBody";
+    document.getElementById("typedLetter").appendChild(bodyElement);
+
+    setTimeout(() => typeBody(bodyElement), 400);
+  }
+}
+
+function typeBody(bodyElement) {
+  if (bodyIndex < letterBody.length) {
+    bodyElement.innerHTML += letterBody.charAt(bodyIndex);
+    bodyIndex++;
+    setTimeout(() => typeBody(bodyElement), 28);
   }
 }
 
 // ======================================
-// YES / NO LOVE GAME (MOBILE FRIENDLY)
+// YES / NO LOVE GAME
 // ======================================
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
@@ -115,7 +154,7 @@ const response = document.getElementById("response");
 if (yesBtn && response) {
   yesBtn.addEventListener("click", () => {
     response.innerHTML = "I knew it, Babeyy 💖 Forever us.";
-    triggerHeartBurst(); // bonus romantic effect
+    triggerHeartBurst();
   });
 }
 
@@ -133,26 +172,24 @@ function moveNoButton() {
   noBtn.style.top = randomY + "px";
 }
 
-// Works on mobile + desktop
 if (noBtn) {
   noBtn.addEventListener("touchstart", moveNoButton);
   noBtn.addEventListener("mouseover", moveNoButton);
 }
 
 // ======================================
-// FLOATING HEARTS (PERFORMANCE OPTIMIZED)
+// FLOATING HEARTS (OPTIMIZED)
 // ======================================
 let heartsInterval = null;
 
 function startHearts() {
   if (heartsInterval) return;
-
   heartsInterval = setInterval(createHeart, 600);
 }
 
 function createHeart() {
-  const heartsContainer = document.querySelector(".hearts");
-  if (!heartsContainer) return;
+  const container = document.querySelector(".hearts");
+  if (!container) return;
 
   const heart = document.createElement("div");
   heart.className = "heart";
@@ -162,12 +199,9 @@ function createHeart() {
   heart.style.fontSize = (14 + Math.random() * 18) + "px";
   heart.style.animationDuration = (6 + Math.random() * 6) + "s";
 
-  heartsContainer.appendChild(heart);
+  container.appendChild(heart);
 
-  // Remove to prevent memory lag on mobile
-  setTimeout(() => {
-    heart.remove();
-  }, 12000);
+  setTimeout(() => heart.remove(), 12000);
 }
 
 // ======================================
@@ -185,20 +219,17 @@ window.addEventListener("scroll", () => {
   if (scrollPosition >= pageHeight - 120) {
     secretSection.classList.add("show");
     secretShown = true;
-    triggerHeartBurst(); // romantic ending effect
+    triggerHeartBurst();
   }
 });
 
 // ======================================
-// EXTRA HEART BURST (ROMANTIC EFFECT)
+// EXTRA HEART BURST (ROMANTIC CLIMAX)
 // ======================================
 function triggerHeartBurst() {
-  const heartsContainer = document.querySelector(".hearts");
-  if (!heartsContainer) return;
-
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 14; i++) {
     setTimeout(() => {
       createHeart();
     }, i * 80);
   }
-      }
+}
