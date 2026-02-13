@@ -1,5 +1,5 @@
 /* =========================
-   RESET & BASE STYLING
+   RESET & BASE
 ========================= */
 * {
   margin: 0;
@@ -17,7 +17,7 @@ body {
 }
 
 /* =========================
-   ENVELOPE SCREEN (INTRO)
+   ENVELOPE INTRO SCREEN
 ========================= */
 #envelopeScreen {
   height: 100vh;
@@ -30,48 +30,22 @@ body {
   transition: opacity 1s ease;
 }
 
-/* Envelope Body */
-.envelope {
-  position: relative;
-  width: 220px;
-  height: 150px;
-  background: #d9a066;
-  border-radius: 12px;
+/* ENVELOPE IMAGE (FLOAT + GENTLE SHAKE) */
+.envelopeImage {
+  width: 260px;
+  max-width: 80vw;
   cursor: pointer;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  animation: floatEnvelope 3s ease-in-out infinite;
-  perspective: 1000px;
+  transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+  animation: floatEnvelope 3.2s ease-in-out infinite,
+             gentleShake 4s ease-in-out infinite;
+  filter: drop-shadow(0 18px 30px rgba(0,0,0,0.25));
 }
 
-/* Envelope Flap */
-.flap {
-  position: absolute;
-  top: -75px;
-  left: 0;
-  width: 0;
-  height: 0;
-  border-left: 110px solid transparent;
-  border-right: 110px solid transparent;
-  border-bottom: 75px solid #c4874f;
-  transform-origin: bottom;
-  transition: transform 0.8s ease;
+/* Tap feedback */
+.envelopeImage:active {
+  transform: scale(0.95);
 }
 
-/* Flap Open Animation */
-.envelope.open .flap {
-  transform: rotateX(180deg);
-}
-
-/* Letter Icon */
-.letterIcon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 42px;
-}
-
-/* Tap Text */
 .tapText {
   margin-top: 18px;
   font-size: 18px;
@@ -79,7 +53,22 @@ body {
   opacity: 0.9;
 }
 
-/* Fade Out Animation */
+/* FLOAT ANIMATION */
+@keyframes floatEnvelope {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+
+/* GENTLE SHAKE (VERY SOFT) */
+@keyframes gentleShake {
+  0%   { rotate: 0deg; }
+  25%  { rotate: 0.6deg; }
+  50%  { rotate: 0deg; }
+  75%  { rotate: -0.6deg; }
+  100% { rotate: 0deg; }
+}
+
+/* FADE OUT INTRO */
 .fadeOut {
   animation: fadeOut 1s ease forwards;
 }
@@ -91,17 +80,12 @@ body {
   }
 }
 
-@keyframes floatEnvelope {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
-}
-
 /* =========================
    MAIN CONTENT
 ========================= */
 #mainContent {
   display: none;
-  padding: 25px 15px 40px;
+  padding: 25px 16px 50px;
   position: relative;
   z-index: 2;
 }
@@ -115,9 +99,10 @@ body {
 }
 
 .hero h1 {
-  font-size: 32px;
+  font-size: 34px;
   color: #8b5e3c;
   margin-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
 .subtitle {
@@ -127,10 +112,10 @@ body {
 }
 
 /* =========================
-   LOVE TIMER SECTION
+   LOVE TIMER
 ========================= */
 .timerSection {
-  margin: 30px 0;
+  margin: 30px 0 35px;
 }
 
 .timerSection h2 {
@@ -143,6 +128,7 @@ body {
   font-size: 18px;
   line-height: 1.7;
   font-weight: 500;
+  color: #5a3e36;
 }
 
 /* =========================
@@ -155,16 +141,16 @@ body {
   padding: 10px;
 }
 
-/* PAPER WITH YOUR HEART BACKGROUND */
+/* VINTAGE PAPER WITH YOUR HEART IMAGE */
 .paper {
   background: url("paper-bg.jpg") center/cover no-repeat;
   border: 2px solid #8b5e3c;
-  border-radius: 16px;
-  padding: 28px 22px;
+  border-radius: 18px;
+  padding: 30px 24px;
   max-width: 95%;
   line-height: 1.9;
   font-size: 17px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
   position: relative;
   overflow: hidden;
   animation: paperFloat 4s ease-in-out infinite;
@@ -175,16 +161,17 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 248, 231, 0.78);
-  border-radius: 16px;
+  background: rgba(255, 248, 231, 0.82);
+  border-radius: 18px;
   z-index: 0;
 }
 
 .paper h2 {
   position: relative;
   z-index: 1;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
   color: #5a3e36;
+  font-size: 24px;
 }
 
 #typedLetter {
@@ -193,21 +180,22 @@ body {
   text-align: left;
   white-space: pre-line;
   font-size: 17px;
-  line-height: 1.9;
+  line-height: 1.95;
   color: #4b2e2e;
   min-height: 180px;
 }
 
+/* Gentle floating paper effect */
 @keyframes paperFloat {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-6px); }
 }
 
 /* =========================
-   LOVE GAME SECTION
+   LOVE GAME
 ========================= */
 .gameSection {
-  margin-top: 40px;
+  margin-top: 45px;
 }
 
 .gameSection h2 {
@@ -216,7 +204,7 @@ body {
   padding: 0 10px;
 }
 
-/* Buttons */
+/* Buttons Layout */
 .buttons {
   display: flex;
   justify-content: center;
@@ -225,30 +213,71 @@ body {
 }
 
 button {
-  padding: 14px 26px;
+  padding: 14px 28px;
   font-size: 18px;
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #d46a6a;
   color: white;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-}
-
-button:active {
-  transform: scale(0.95);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 button:hover {
   background: #c25555;
 }
 
+button:active {
+  transform: scale(0.94);
+}
+
 #response {
-  margin-top: 15px;
+  margin-top: 16px;
   font-size: 18px;
   font-weight: 500;
   color: #8b3a3a;
+}
+
+/* =========================
+   SECRET ENDING MESSAGE
+========================= */
+#secretSection {
+  margin-top: 90px;
+  padding: 40px 20px 70px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.3s ease;
+}
+
+#secretSection.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.secretCard {
+  background: rgba(255, 248, 231, 0.9);
+  border: 2px solid #8b5e3c;
+  border-radius: 20px;
+  padding: 32px 24px;
+  max-width: 92%;
+  margin: 0 auto;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+  backdrop-filter: blur(6px);
+}
+
+.secretText {
+  font-size: 20px;
+  line-height: 2;
+  color: #5a3e36;
+  font-weight: 500;
+  animation: gentleGlow 2.5s ease-in-out infinite alternate;
+}
+
+/* Soft glow animation */
+@keyframes gentleGlow {
+  from { opacity: 0.85; }
+  to { opacity: 1; }
 }
 
 /* =========================
@@ -269,7 +298,7 @@ button:hover {
   position: absolute;
   bottom: -20px;
   animation: floatHeart linear forwards;
-  opacity: 0.5;
+  opacity: 0.55;
   filter: blur(0.2px);
 }
 
@@ -279,21 +308,21 @@ button:hover {
     opacity: 0.7;
   }
   50% {
-    transform: translateY(-50vh) translateX(25px) scale(1.2);
+    transform: translateY(-50vh) translateX(25px) scale(1.25);
     opacity: 0.9;
   }
   100% {
-    transform: translateY(-110vh) translateX(-25px) scale(1.4);
+    transform: translateY(-115vh) translateX(-25px) scale(1.45);
     opacity: 0;
   }
 }
 
 /* =========================
-   MOBILE OPTIMIZATION
+   MOBILE OPTIMIZATION (CRITICAL)
 ========================= */
 @media (max-width: 480px) {
   .hero h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .subtitle {
@@ -310,11 +339,19 @@ button:hover {
 
   .paper {
     font-size: 16px;
-    padding: 22px 16px;
+    padding: 24px 18px;
+  }
+
+  .secretText {
+    font-size: 18px;
   }
 
   button {
     font-size: 16px;
-    padding: 12px 20px;
+    padding: 12px 22px;
   }
+
+  .envelopeImage {
+    width: 220px;
   }
+   }
