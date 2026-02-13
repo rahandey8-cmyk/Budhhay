@@ -11,7 +11,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #f3e7d3;
+  background: #f5e9d8;
   font-family: 'Libre Baskerville', serif;
   text-align: center;
   overflow-x: hidden;
@@ -19,38 +19,39 @@ body {
 
 /* Vintage paper card */
 .paper {
-  background: #fff8ea;
+  background: #fffaf0;
   background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
-  padding: 30px;
-  border-radius: 16px;
-  max-width: 650px;
+  padding: 28px;
+  border-radius: 18px;
+  max-width: 680px;
   margin: 20px auto;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-  animation: fadeIn 2s ease;
+  box-shadow: 0 15px 45px rgba(0,0,0,0.15);
+  animation: fadeIn 1.8s ease;
 }
 
 h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 44px;
-  color: #5a3a2e;
+  font-size: 42px;
+  color: #5c3b2e;
+  margin-top: 60px;
 }
 
 h2 {
   font-family: 'Great Vibes', cursive;
-  font-size: 36px;
-  color: #6b4c3b;
+  font-size: 34px;
+  color: #6d4c41;
 }
 
 p {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.9;
   color: #4a3b2c;
 }
 
 /* Envelope */
 .envelope {
-  width: 200px;
-  margin-top: 70px;
+  width: 180px;
+  margin-top: 40px;
   cursor: pointer;
   transition: transform 0.4s ease;
 }
@@ -63,30 +64,33 @@ p {
   display: none;
 }
 
-/* Counter */
+/* Days counter */
 .counter {
-  font-size: 20px;
-  margin-top: 15px;
-  color: #7b4b3a;
+  font-size: 19px;
+  margin: 15px 0;
+  color: #8b5e3c;
   font-weight: bold;
 }
 
 /* Gallery */
+.gallery {
+  margin-top: 15px;
+}
 .gallery img {
-  width: 90%;
-  max-width: 300px;
-  border-radius: 14px;
-  margin: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  width: 92%;
+  max-width: 320px;
+  border-radius: 16px;
+  margin: 12px 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
-/* Floating hearts (subtle aesthetic) */
+/* Floating hearts (soft aesthetic) */
 .heart {
   position: fixed;
   bottom: -10px;
-  color: #c97b7b;
-  animation: float 7s linear infinite;
-  opacity: 0.8;
+  color: #d08a8a;
+  animation: float 8s linear infinite;
+  opacity: 0.7;
 }
 
 @keyframes float {
@@ -101,34 +105,35 @@ p {
 
 button {
   padding: 12px 26px;
-  font-size: 16px;
+  font-size: 15px;
   background: #7b4b3a;
   color: white;
   border: none;
   border-radius: 25px;
-  margin-top: 20px;
+  margin-top: 18px;
+  cursor: pointer;
 }
 </style>
 </head>
 <body>
 
-<!-- Soft Lana-style background music -->
+<!-- Background Music (Lana vibe instrumental) -->
 <audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2023/02/28/audio_7f9b0b6e7e.mp3" type="audio/mp3">
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_946f1e6c0f.mp3" type="audio/mp3">
 </audio>
 
 <!-- Opening Screen -->
 <div id="start">
   <h1>For My Babeyyyy 💌</h1>
   <p>From your Bong</p>
-  <img class="envelope" 
-       src="https://cdn-icons-png.flaticon.com/512/561/561127.png" 
-       onclick="openLetter()" 
-       alt="Envelope">
+  <img class="envelope"
+       src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
+       onclick="openLetter()"
+       alt="Open Letter">
   <p>(tap the envelope)</p>
 </div>
 
-<!-- Letter -->
+<!-- Letter Section -->
 <div id="letter" class="hidden">
   <div class="paper">
     <h2>My Babygirl,</h2>
@@ -136,31 +141,27 @@ button {
     <div class="counter" id="daysCounter"></div>
 
     <p>
-      Since 08.03.2025, my life quietly changed in the softest way possible.
-      You didn’t just become someone I love…
-      you became my comfort, my peace, and my home — even from miles away.
+      Since 08.03.2025, my world has quietly changed in the most beautiful way.
+      Even though we are far apart, you are present in every small moment of my day.
     </p>
 
     <p>
-      We are far apart in distance,  
-      but somehow, you exist in every little part of my day.
-      In my thoughts, in my silence, in the moments I wish I could hold your hand.
+      Distance exists between our locations,
+      but never between our hearts.
+      Somehow, you became my comfort, my peace,
+      and the softest part of my life.
     </p>
 
     <p>
-      You call me Bong,  
-      and I call you my Babeyyyy…  
-      and that alone feels more real than any distance in this world.
+      You call me Bong,
+      and I call you my Babeyyyy…
+      and that alone feels like home to me.
     </p>
 
     <p>
-      If I could, I would turn every kilometer between us into a letter,
-      just so you could feel how much you mean to me.
-    </p>
-
-    <p>
-      This little website is not just code.
-      It’s my way of being close to you when I physically cannot.
+      This little website is not just a page.
+      It is my way of holding your hand across the distance,
+      in the quietest and most sincere way I can.
     </p>
 
     <p>
@@ -169,20 +170,21 @@ button {
       — Bong ❤️
     </p>
 
-    <button onclick="showGallery()">Open Our Memories</button>
+    <button onclick="showGallery()">Open Our Memories 📸</button>
   </div>
 </div>
 
 <!-- Memories Section -->
 <div id="gallery" class="hidden">
   <div class="paper">
-    <h2>Our Memories 📸</h2>
-    <p>Every memory with you is my favorite.</p>
+    <h2>Our Memories</h2>
+    <p>Every moment with you is my favorite memory.</p>
 
     <div class="gallery">
-      <img src="photo1.jpg" alt="Memory 1">
-      <img src="photo2.jpg" alt="Memory 2">
-      <img src="photo3.jpg" alt="Memory 3">
+      <!-- IMPORTANT: These match your GitHub PNG files -->
+      <img src="photo1.png" alt="Memory 1">
+      <img src="photo2.png" alt="Memory 2">
+      <img src="photo3.png" alt="Memory 3">
     </div>
   </div>
 </div>
@@ -196,7 +198,7 @@ function openLetter() {
   calculateDays();
 }
 
-// Days counter (since 08.03.2025)
+// Days counter since 08 March 2025
 function calculateDays() {
   const startDate = new Date("2025-03-08");
   const today = new Date();
@@ -210,20 +212,21 @@ function showGallery() {
   document.getElementById("gallery").classList.remove("hidden");
 }
 
-// Floating hearts (aesthetic, not too flashy)
+// Soft floating hearts
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("heart");
   heart.innerHTML = "❤";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 16 + 12) + "px";
+  heart.style.fontSize = (Math.random() * 14 + 12) + "px";
   document.body.appendChild(heart);
 
   setTimeout(() => {
     heart.remove();
-  }, 7000);
+  }, 8000);
 }
-setInterval(createHeart, 900);
+
+setInterval(createHeart, 1200);
 </script>
 
 </body>
