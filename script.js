@@ -1,26 +1,29 @@
-// ===============================
+// ======================================
 // LOVE START DATE (08 March 2025)
-// ===============================
+// ======================================
 const startDate = new Date("2025-03-08T00:00:00");
 
-// ===============================
-// ENVELOPE OPEN FUNCTION (CINEMATIC + MOBILE SAFE)
-// ===============================
+// ======================================
+// ENVELOPE OPEN (IMAGE VERSION - SMOOTH)
+// ======================================
 function openEnvelope() {
-  const envelope = document.querySelector(".envelope");
+  const envelope = document.querySelector(".envelopeImage");
   const envelopeScreen = document.getElementById("envelopeScreen");
   const mainContent = document.getElementById("mainContent");
   const music = document.getElementById("bgMusic");
 
-  // Open flap animation
-  envelope.classList.add("open");
+  // Small visual tap feedback
+  if (envelope) {
+    envelope.style.transform = "scale(1.08)";
+    envelope.style.opacity = "0.9";
+  }
 
-  // Play music after user tap (required for mobile)
+  // Play music (mobile safe after tap)
   if (music) {
     music.play().catch(() => {});
   }
 
-  // Fade out envelope and reveal main site
+  // Smooth fade transition
   setTimeout(() => {
     envelopeScreen.classList.add("fadeOut");
 
@@ -28,45 +31,45 @@ function openEnvelope() {
       envelopeScreen.style.display = "none";
       mainContent.style.display = "block";
 
-      // Start typing letter AFTER content appears
+      // Start typing letter after reveal
       startTypingLetter();
 
-    }, 1000);
-  }, 800);
+      // Start floating hearts after reveal (better performance)
+      startHearts();
+
+    }, 900);
+  }, 400);
 }
 
-// ===============================
-// LOVE TIMER (CLEAN + ELEGANT)
-// ===============================
+// ======================================
+// ELEGANT LOVE TIMER (CLEAN FORMAT)
+// ======================================
 function updateLoveTime() {
   const now = new Date();
   const diff = now - startDate;
 
   const totalSeconds = Math.floor(diff / 1000);
 
-  const days = Math.floor(totalSeconds / (3600 * 24));
-  const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const days = Math.floor(totalSeconds / (60 * 60 * 24));
+  const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+  const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
   const seconds = totalSeconds % 60;
 
   const timerElement = document.getElementById("loveTime");
 
   if (timerElement) {
     timerElement.innerHTML =
-      days + " days, " +
-      hours + " hours, " +
-      minutes + " minutes, " +
-      seconds + " seconds with Babeyy ❤️";
+      `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds with Babeyy ❤️`;
   }
 }
 
-// Start timer immediately and update every second
+// Start timer immediately + every second
 updateLoveTime();
 setInterval(updateLoveTime, 1000);
 
-// ===============================
-// TYPING LETTER EFFECT (CINEMATIC)
-// ===============================
+// ======================================
+// CINEMATIC TYPING LETTER
+// ======================================
 const letterText = `My Babeyy,
 
 From the moment you came into my life on 08.03.2025,
@@ -98,13 +101,13 @@ function typeLetter() {
   if (letterIndex < letterText.length) {
     typedElement.innerHTML += letterText.charAt(letterIndex);
     letterIndex++;
-    setTimeout(typeLetter, 35); // typing speed (lower = faster)
+    setTimeout(typeLetter, 32); // smooth cinematic speed
   }
 }
 
-// ===============================
-// YES / NO LOVE GAME (MOBILE + DESKTOP)
-// ===============================
+// ======================================
+// YES / NO LOVE GAME (MOBILE FRIENDLY)
+// ======================================
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const response = document.getElementById("response");
@@ -112,6 +115,7 @@ const response = document.getElementById("response");
 if (yesBtn && response) {
   yesBtn.addEventListener("click", () => {
     response.innerHTML = "I knew it, Babeyy 💖 Forever us.";
+    triggerHeartBurst(); // bonus romantic effect
   });
 }
 
@@ -129,39 +133,72 @@ function moveNoButton() {
   noBtn.style.top = randomY + "px";
 }
 
-// Works on both phone and laptop
+// Works on mobile + desktop
 if (noBtn) {
   noBtn.addEventListener("touchstart", moveNoButton);
   noBtn.addEventListener("mouseover", moveNoButton);
 }
 
-// ===============================
-// FLOATING HEARTS (FULL SCREEN + SOFT)
-// ===============================
+// ======================================
+// FLOATING HEARTS (PERFORMANCE OPTIMIZED)
+// ======================================
+let heartsInterval = null;
+
+function startHearts() {
+  if (heartsInterval) return;
+
+  heartsInterval = setInterval(createHeart, 600);
+}
+
 function createHeart() {
   const heartsContainer = document.querySelector(".hearts");
   if (!heartsContainer) return;
 
   const heart = document.createElement("div");
-  heart.classList.add("heart");
+  heart.className = "heart";
   heart.innerHTML = "❤️";
 
-  // Random horizontal position
   heart.style.left = Math.random() * 100 + "vw";
-
-  // Random animation duration (natural floating)
+  heart.style.fontSize = (14 + Math.random() * 18) + "px";
   heart.style.animationDuration = (6 + Math.random() * 6) + "s";
-
-  // Random size for depth effect
-  heart.style.fontSize = (14 + Math.random() * 20) + "px";
 
   heartsContainer.appendChild(heart);
 
-  // Remove after animation to prevent lag
+  // Remove to prevent memory lag on mobile
   setTimeout(() => {
     heart.remove();
   }, 12000);
 }
 
-// Generate hearts continuously (smooth, not spammy)
-setInterval(createHeart, 500);
+// ======================================
+// SECRET MESSAGE SCROLL REVEAL
+// ======================================
+let secretShown = false;
+
+window.addEventListener("scroll", () => {
+  const secretSection = document.getElementById("secretSection");
+  if (!secretSection || secretShown) return;
+
+  const scrollPosition = window.innerHeight + window.scrollY;
+  const pageHeight = document.body.offsetHeight;
+
+  if (scrollPosition >= pageHeight - 120) {
+    secretSection.classList.add("show");
+    secretShown = true;
+    triggerHeartBurst(); // romantic ending effect
+  }
+});
+
+// ======================================
+// EXTRA HEART BURST (ROMANTIC EFFECT)
+// ======================================
+function triggerHeartBurst() {
+  const heartsContainer = document.querySelector(".hearts");
+  if (!heartsContainer) return;
+
+  for (let i = 0; i < 12; i++) {
+    setTimeout(() => {
+      createHeart();
+    }, i * 80);
+  }
+      }
